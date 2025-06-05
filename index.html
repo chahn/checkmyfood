@@ -51,6 +51,10 @@
 
         .api-key-section {
             margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            background-color: #f9f9f9;
             display: none;
         }
 
@@ -249,6 +253,78 @@
                 margin: 5px 0;
             }
         }
+
+        .settings-section,
+        .api-key-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            display: none;
+        }
+
+        .settings-section.show,
+        .api-key-section.show {
+            display: block;
+        }
+
+        .settings-section h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .current-ingredients-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .current-ingredients-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 5px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .current-ingredients-list li:last-child {
+            border-bottom: none;
+        }
+
+        .current-ingredients-list .ingredient-text {
+            flex-grow: 1;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .current-ingredients-list .ingredient-details {
+            font-size: 12px;
+            color: #555;
+            display: block;
+        }
+
+        .current-ingredients-list .remove-ingredient-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .current-ingredients-list .remove-ingredient-btn:hover {
+            background: #ee5a24;
+        }
     </style>
 </head>
 <body>
@@ -260,6 +336,7 @@
 
         <div class="content">
             <button id="setupBtn" class="button setup-button">⚙️ Setup API Key</button>
+            <button id="customizeIngredientsBtn" class="button setup-button" style="background: linear-gradient(135deg, #54a0ff 0%, #2e86de 100%);">🔧 Customize Ingredients</button>
 
             <div id="apiKeySection" class="api-key-section">
                 <div class="input-group">
@@ -267,6 +344,25 @@
                     <input type="password" id="apiKey" placeholder="sk-..." />
                 </div>
                 <button id="saveApiKey" class="button">💾 Save & Continue</button>
+            </div>
+
+            <div id="ingredientSettingsSection" class="settings-section">
+                <h3>Customize Problematic Ingredients</h3>
+                <div class="input-group">
+                    <label for="newIngredientName">Ingredient Name (e.g., Aspartame):</label>
+                    <input type="text" id="newIngredientName" placeholder="Enter ingredient name" />
+                </div>
+                <div class="input-group">
+                    <label for="newIngredientDetails">Details/Examples (e.g., artificial sweetener E951):</label>
+                    <input type="text" id="newIngredientDetails" placeholder="Optional: examples, E-numbers" />
+                </div>
+                <button id="addIngredientBtn" class="button" style="margin-bottom: 20px;">➕ Add Ingredient</button>
+
+                <h4>Current List:</h4>
+                <ul id="currentIngredientsList" class="current-ingredients-list">
+                    <!-- Ingredients will be populated here by JavaScript -->
+                </ul>
+                <button id="saveIngredientSettingsBtn" class="button">💾 Save & Close Settings</button>
             </div>
 
             <div id="mainApp" style="display: none;">
