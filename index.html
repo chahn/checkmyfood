@@ -466,13 +466,20 @@ If no colorants or preservatives are found, set status to "ok". If any are found
                         throw new Error(`API request failed: ${response.status}`);
                     }
 
-                    const data = await response.json();
+                                        const data = await response.json();
                     const analysisText = data.choices[0].message.content;
 
-                    // Try to parse JSON response
+                    // Try to parse JSON response, handling markdown code blocks
                     let analysis;
                     try {
-                        analysis = JSON.parse(analysisText);
+                        // Remove markdown code blocks if present
+                        let jsonText = analysisText;
+                        const jsonMatch = analysisText.match(/```(?:json)?\s*(\{[\s\S]*?\})\s*```/);
+                        if (jsonMatch) {
+                            jsonText = jsonMatch[1];
+                        }
+
+                        analysis = JSON.parse(jsonText);
                     } catch (e) {
                         // Fallback if JSON parsing fails
                         analysis = {
