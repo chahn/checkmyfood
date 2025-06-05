@@ -401,8 +401,12 @@
                 this.apiKey = localStorage.getItem('openai_api_key') || '';
                 this.stream = null;
 
+                // Initialize custom ingredients with defaults
+                this.customIngredients = this.loadCustomIngredients();
+
                 this.initializeEventListeners();
                 this.checkApiKey();
+                this.loadIngredientsList();
             }
 
             initializeEventListeners() {
@@ -412,6 +416,19 @@
                 document.getElementById('captureBtn').addEventListener('click', () => this.capturePhoto());
                 document.getElementById('retakeBtn').addEventListener('click', () => this.retakePhoto());
                 document.getElementById('analyzeBtn').addEventListener('click', () => this.analyzeIngredients());
+
+                // Add ingredient customization event listeners
+                document.getElementById('customizeIngredientsBtn').addEventListener('click', () => this.showIngredientSettings());
+                document.getElementById('addIngredientBtn').addEventListener('click', () => this.addCustomIngredient());
+                document.getElementById('saveIngredientSettingsBtn').addEventListener('click', () => this.saveIngredientSettings());
+
+                // Add Enter key support for adding ingredients
+                document.getElementById('newIngredientName').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.addCustomIngredient();
+                });
+                document.getElementById('newIngredientDetails').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.addCustomIngredient();
+                });
             }
 
             checkApiKey() {
@@ -533,22 +550,7 @@
                                     content: [
                                                                                 {
                                             type: "text",
-                                            text: `Analyze this ingredient list image for the following problematic ingredients:
-
-1. Colorants (artificial colors like E102, E110, E124, E129, etc.)
-2. Preservatives (like E200-E299, BHA, BHT, etc.)
-3. Smoke or smoke aroma (Rauch, Raucharoma, smoke flavoring, etc.)
-4. Caramel or similar (Karamell, caramel coloring, caramel flavor, etc.)
-
-Please respond in this exact JSON format:
-{
-  "status": "ok" or "warning",
-  "message": "brief summary message",
-  "problematic_ingredients": ["list of problematic ingredients found, empty array if none"],
-  "details": "detailed explanation of findings"
-}
-
-If none of these problematic ingredients are found, set status to "ok". If any are found, set status to "warning" and list them.`
+                                            text: this.generateIngredientPrompt()
                                         },
                                         {
                                             type: "image_url",
@@ -644,11 +646,120 @@ If none of these problematic ingredients are found, set status to "ok". If any a
                 content.innerHTML = `<p>Sorry, there was an error analyzing the image:</p><p><strong>${errorMessage}</strong></p><p>Please try again or check your API key.</p>`;
                 results.style.display = 'block';
             }
+
+            // Ingredient customization methods
+            loadCustomIngredients() {
+                const defaultIngredients = [
+                    { name: "Colorants", details: "artificial colors like E102, E110, E124, E129, etc." },
+                    { name: "Preservatives", details: "like E200-E299, BHA, BHT, etc." },
+                    { name: "Smoke or smoke aroma", details: "Rauch, Raucharoma, smoke flavoring, etc." },
+                    { name: "Caramel or similar", details: "Karamell, caramel coloring, caramel flavor, etc." }
+                ];
+
+                const saved = localStorage.getItem('custom_ingredients');
+                return saved ? JSON.parse(saved) : defaultIngredients;
+            }
+
+            saveCustomIngredients() {
+                localStorage.setItem('custom_ingredients', JSON.stringify(this.customIngredients));
+            }
+
+            showIngredientSettings() {
+                const section = document.getElementById('ingredientSettingsSection');
+                section.classList.toggle('show');
+                this.loadIngredientsList();
+            }
+
+            loadIngredientsList() {
+                const list = document.getElementById('currentIngredientsList');
+                list.innerHTML = '';
+
+                this.customIngredients.forEach((ingredient, index) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <div class="ingredient-text">
+                            <strong>${ingredient.name}</strong>
+                            ${ingredient.details ? `<div class="ingredient-details">${ingredient.details}</div>` : ''}
+                        </div>
+                        <button class="remove-ingredient-btn" onclick="ingredientAnalyzer.removeCustomIngredient(${index})">🗑️ Remove</button>
+                    `;
+                    list.appendChild(li);
+                });
+            }
+
+            addCustomIngredient() {
+                const nameInput = document.getElementById('newIngredientName');
+                const detailsInput = document.getElementById('newIngredientDetails');
+
+                const name = nameInput.value.trim();
+                const details = detailsInput.value.trim();
+
+                if (!name) {
+                    alert('Please enter an ingredient name.');
+                    return;
+                }
+
+                // Check if ingredient already exists
+                const exists = this.customIngredients.some(ingredient =>
+                    ingredient.name.toLowerCase() === name.toLowerCase()
+                );
+
+                if (exists) {
+                    alert('This ingredient is already in your list.');
+                    return;
+                }
+
+                this.customIngredients.push({ name, details });
+                this.saveCustomIngredients();
+                this.loadIngredientsList();
+
+                // Clear inputs
+                nameInput.value = '';
+                detailsInput.value = '';
+                nameInput.focus();
+
+                alert(`Added "${name}" to your custom ingredients list.`);
+            }
+
+            removeCustomIngredient(index) {
+                const ingredient = this.customIngredients[index];
+                if (confirm(`Remove "${ingredient.name}" from your list?`)) {
+                    this.customIngredients.splice(index, 1);
+                    this.saveCustomIngredients();
+                    this.loadIngredientsList();
+                }
+            }
+
+            saveIngredientSettings() {
+                document.getElementById('ingredientSettingsSection').classList.remove('show');
+                alert('Ingredient settings saved successfully!');
+            }
+
+            generateIngredientPrompt() {
+                const ingredientList = this.customIngredients.map((ingredient, index) =>
+                    `${index + 1}. ${ingredient.name} (${ingredient.details})`
+                ).join('\n');
+
+                return `Analyze this ingredient list image for the following problematic ingredients:
+
+${ingredientList}
+
+Please respond in this exact JSON format:
+{
+  "status": "ok" or "warning",
+  "message": "brief summary message",
+  "problematic_ingredients": ["list of problematic ingredients found, empty array if none"],
+  "details": "detailed explanation of findings"
+}
+
+If none of these problematic ingredients are found, set status to "ok". If any are found, set status to "warning" and list them.`;
+            }
         }
 
         // Initialize the app when the page loads
+        let ingredientAnalyzer;
         document.addEventListener('DOMContentLoaded', () => {
-            new IngredientAnalyzer();
+            ingredientAnalyzer = new IngredientAnalyzer();
         });
 
         // Register service worker for PWA functionality (optional)
