@@ -255,7 +255,7 @@
     <div class="container">
         <div class="header">
             <h1>🔍 Ingredient Analyzer</h1>
-            <p>Check for colorants and preservatives in your food</p>
+            <p>Check for colorants, preservatives, smoke, and caramel in your food</p>
         </div>
 
         <div class="content">
@@ -435,9 +435,14 @@
                                 {
                                     role: "user",
                                     content: [
-                                        {
+                                                                                {
                                             type: "text",
-                                            text: `Analyze this ingredient list image for colorants (artificial colors like E102, E110, E124, etc.) and preservatives (like E200-E299, BHA, BHT, etc.).
+                                            text: `Analyze this ingredient list image for the following problematic ingredients:
+
+1. Colorants (artificial colors like E102, E110, E124, E129, etc.)
+2. Preservatives (like E200-E299, BHA, BHT, etc.)
+3. Smoke or smoke aroma (Rauch, Raucharoma, smoke flavoring, etc.)
+4. Caramel or similar (Karamell, caramel coloring, caramel flavor, etc.)
 
 Please respond in this exact JSON format:
 {
@@ -447,7 +452,7 @@ Please respond in this exact JSON format:
   "details": "detailed explanation of findings"
 }
 
-If no colorants or preservatives are found, set status to "ok". If any are found, set status to "warning" and list them.`
+If none of these problematic ingredients are found, set status to "ok". If any are found, set status to "warning" and list them.`
                                         },
                                         {
                                             type: "image_url",
