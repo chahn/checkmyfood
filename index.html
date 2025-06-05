@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingredient Analyzer</title>
+    <title>Zutaten-Analysator</title>
     <style>
         * {
             margin: 0;
@@ -330,39 +330,39 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🔍 Ingredient Analyzer</h1>
-            <p>Check for colorants, preservatives, smoke, and caramel in your food</p>
+            <h1>🔍 Zutaten-Analysator</h1>
+            <p>Prüfe Farbstoffe, Konservierungsstoffe, Rauch und Karamell in deinen Lebensmitteln</p>
         </div>
 
         <div class="content">
-            <button id="setupBtn" class="button setup-button">⚙️ Setup API Key</button>
-            <button id="customizeIngredientsBtn" class="button setup-button" style="background: linear-gradient(135deg, #54a0ff 0%, #2e86de 100%);">🔧 Customize Ingredients</button>
+            <button id="setupBtn" class="button setup-button">⚙️ API-Schlüssel einrichten</button>
+            <button id="customizeIngredientsBtn" class="button setup-button" style="background: linear-gradient(135deg, #54a0ff 0%, #2e86de 100%);">🔧 Zutaten anpassen</button>
 
             <div id="apiKeySection" class="api-key-section">
                 <div class="input-group">
-                    <label for="apiKey">OpenAI API Key:</label>
+                    <label for="apiKey">OpenAI API-Schlüssel:</label>
                     <input type="password" id="apiKey" placeholder="sk-..." />
                 </div>
-                <button id="saveApiKey" class="button">💾 Save & Continue</button>
+                <button id="saveApiKey" class="button">💾 Speichern & Fortfahren</button>
             </div>
 
             <div id="ingredientSettingsSection" class="settings-section">
-                <h3>Customize Problematic Ingredients</h3>
+                <h3>Problematische Zutaten anpassen</h3>
                 <div class="input-group">
-                    <label for="newIngredientName">Ingredient Name (e.g., Aspartame):</label>
-                    <input type="text" id="newIngredientName" placeholder="Enter ingredient name" />
+                    <label for="newIngredientName">Zutat (z.B. Aspartam):</label>
+                    <input type="text" id="newIngredientName" placeholder="Zutat eingeben" />
                 </div>
                 <div class="input-group">
-                    <label for="newIngredientDetails">Details/Examples (e.g., artificial sweetener E951):</label>
-                    <input type="text" id="newIngredientDetails" placeholder="Optional: examples, E-numbers" />
+                    <label for="newIngredientDetails">Details/Beispiele (z.B. künstlicher Süßstoff E951):</label>
+                    <input type="text" id="newIngredientDetails" placeholder="Optional: Beispiele, E-Nummern" />
                 </div>
-                <button id="addIngredientBtn" class="button" style="margin-bottom: 20px;">➕ Add Ingredient</button>
+                <button id="addIngredientBtn" class="button" style="margin-bottom: 20px;">➕ Zutat hinzufügen</button>
 
-                <h4>Current List:</h4>
+                <h4>Aktuelle Liste:</h4>
                 <ul id="currentIngredientsList" class="current-ingredients-list">
-                    <!-- Ingredients will be populated here by JavaScript -->
+                    <!-- Zutaten werden hier von JavaScript eingefügt -->
                 </ul>
-                <button id="saveIngredientSettingsBtn" class="button">💾 Save & Close Settings</button>
+                <button id="saveIngredientSettingsBtn" class="button">💾 Speichern & Schließen</button>
             </div>
 
             <div id="mainApp" style="display: none;">
@@ -370,18 +370,18 @@
                     <div class="camera-container">
                         <video id="video" autoplay playsinline></video>
                         <canvas id="canvas"></canvas>
-                        <img id="capturedImage" class="captured-image" alt="Captured ingredient list" />
+                        <img id="capturedImage" class="captured-image" alt="Aufgenommene Zutatenliste" />
                     </div>
 
-                    <button id="startCamera" class="button">📷 Start Camera</button>
-                    <button id="captureBtn" class="button" style="display: none;">📸 Capture Photo</button>
-                    <button id="retakeBtn" class="button secondary" style="display: none;">🔄 Retake</button>
-                    <button id="analyzeBtn" class="button" style="display: none;">🔍 Analyze Ingredients</button>
+                    <button id="startCamera" class="button">📷 Kamera starten</button>
+                    <button id="captureBtn" class="button" style="display: none;">📸 Foto aufnehmen</button>
+                    <button id="retakeBtn" class="button secondary" style="display: none;">🔄 Wiederholen</button>
+                    <button id="analyzeBtn" class="button" style="display: none;">🔍 Zutaten analysieren</button>
                 </div>
 
                 <div id="loading" class="loading">
                     <div class="spinner"></div>
-                    <p>Analyzing ingredients...</p>
+                    <p>Analysiere Zutaten...</p>
                 </div>
 
                 <div id="results" class="results">
@@ -434,7 +434,7 @@
             checkApiKey() {
                 if (this.apiKey) {
                     document.getElementById('mainApp').style.display = 'block';
-                    document.getElementById('setupBtn').textContent = '⚙️ Change API Key';
+                    document.getElementById('setupBtn').textContent = '⚙️ API-Schlüssel ändern';
                 }
             }
 
@@ -451,7 +451,7 @@
                 const apiKey = apiKeyInput.value.trim();
 
                 if (!apiKey.startsWith('sk-')) {
-                    alert('Please enter a valid OpenAI API key (starts with sk-)');
+                    alert('Bitte geben Sie einen gültigen OpenAI API-Schlüssel ein (beginnt mit sk-)');
                     return;
                 }
 
@@ -460,9 +460,9 @@
 
                 document.getElementById('apiKeySection').classList.remove('show');
                 document.getElementById('mainApp').style.display = 'block';
-                document.getElementById('setupBtn').textContent = '⚙️ Change API Key';
+                document.getElementById('setupBtn').textContent = '⚙️ API-Schlüssel ändern';
 
-                alert('API key saved successfully!');
+                alert('API-Schlüssel erfolgreich gespeichert!');
             }
 
             async startCamera() {
@@ -486,7 +486,7 @@
 
                 } catch (error) {
                     console.error('Error accessing camera:', error);
-                    alert('Could not access camera. Please make sure you have granted camera permissions.');
+                    alert('Kamera konnte nicht geöffnet werden. Bitte stellen Sie sicher, dass Sie Kamera-Berechtigungen erteilt haben.');
                 }
             }
 
@@ -522,7 +522,7 @@
 
             async analyzeIngredients() {
                 if (!this.apiKey) {
-                    alert('Please set up your OpenAI API key first.');
+                    alert('Bitte richten Sie zuerst Ihren OpenAI API-Schlüssel ein.');
                     return;
                 }
 
@@ -612,16 +612,16 @@
 
                 if (analysis.status === 'ok') {
                     results.classList.add('success');
-                    title.textContent = '✅ All Clear!';
+                    title.textContent = '✅ Alles in Ordnung!';
                     content.innerHTML = `<p><strong>${analysis.message}</strong></p><p>${analysis.details}</p>`;
                 } else {
                     results.classList.add('warning');
-                    title.textContent = '⚠️ Problematic Ingredients Found';
+                    title.textContent = '⚠️ Problematische Zutaten gefunden';
 
                     let html = `<p><strong>${analysis.message}</strong></p>`;
 
                     if (analysis.problematic_ingredients && analysis.problematic_ingredients.length > 0) {
-                        html += '<p><strong>Problematic ingredients:</strong></p>';
+                        html += '<p><strong>Problematische Zutaten:</strong></p>';
                         html += '<ul class="ingredient-list">';
                         analysis.problematic_ingredients.forEach(ingredient => {
                             html += `<li>• ${ingredient}</li>`;
@@ -642,18 +642,18 @@
                 const content = document.getElementById('resultsContent');
 
                 results.className = 'results error';
-                title.textContent = '❌ Analysis Error';
-                content.innerHTML = `<p>Sorry, there was an error analyzing the image:</p><p><strong>${errorMessage}</strong></p><p>Please try again or check your API key.</p>`;
+                title.textContent = '❌ Analyse-Fehler';
+                content.innerHTML = `<p>Entschuldigung, es gab einen Fehler bei der Bildanalyse:</p><p><strong>${errorMessage}</strong></p><p>Bitte versuchen Sie es erneut oder überprüfen Sie Ihren API-Schlüssel.</p>`;
                 results.style.display = 'block';
             }
 
             // Ingredient customization methods
-            loadCustomIngredients() {
+                        loadCustomIngredients() {
                 const defaultIngredients = [
-                    { name: "Colorants", details: "artificial colors like E102, E110, E124, E129, etc." },
-                    { name: "Preservatives", details: "like E200-E299, BHA, BHT, etc." },
-                    { name: "Smoke or smoke aroma", details: "Rauch, Raucharoma, smoke flavoring, etc." },
-                    { name: "Caramel or similar", details: "Karamell, caramel coloring, caramel flavor, etc." }
+                    { name: "Farbstoffe", details: "künstliche Farben wie E102, E110, E124, E129, usw." },
+                    { name: "Konservierungsstoffe", details: "wie E200-E299, BHA, BHT, usw." },
+                    { name: "Rauch oder Raucharoma", details: "Rauch, Raucharoma, Rauchgeschmack, usw." },
+                    { name: "Karamell oder ähnliches", details: "Karamell, Karamellfarbe, Karamellgeschmack, usw." }
                 ];
 
                 const saved = localStorage.getItem('custom_ingredients');
@@ -681,7 +681,7 @@
                             <strong>${ingredient.name}</strong>
                             ${ingredient.details ? `<div class="ingredient-details">${ingredient.details}</div>` : ''}
                         </div>
-                        <button class="remove-ingredient-btn" onclick="ingredientAnalyzer.removeCustomIngredient(${index})">🗑️ Remove</button>
+                        <button class="remove-ingredient-btn" onclick="ingredientAnalyzer.removeCustomIngredient(${index})">🗑️ Entfernen</button>
                     `;
                     list.appendChild(li);
                 });
@@ -694,8 +694,8 @@
                 const name = nameInput.value.trim();
                 const details = detailsInput.value.trim();
 
-                if (!name) {
-                    alert('Please enter an ingredient name.');
+                                if (!name) {
+                    alert('Bitte geben Sie einen Zutatennamen ein.');
                     return;
                 }
 
@@ -705,7 +705,7 @@
                 );
 
                 if (exists) {
-                    alert('This ingredient is already in your list.');
+                    alert('Diese Zutat ist bereits in Ihrer Liste.');
                     return;
                 }
 
@@ -718,12 +718,12 @@
                 detailsInput.value = '';
                 nameInput.focus();
 
-                alert(`Added "${name}" to your custom ingredients list.`);
+                alert(`"${name}" wurde zu Ihrer Zutatenliste hinzugefügt.`);
             }
 
             removeCustomIngredient(index) {
                 const ingredient = this.customIngredients[index];
-                if (confirm(`Remove "${ingredient.name}" from your list?`)) {
+                if (confirm(`"${ingredient.name}" aus Ihrer Liste entfernen?`)) {
                     this.customIngredients.splice(index, 1);
                     this.saveCustomIngredients();
                     this.loadIngredientsList();
@@ -732,7 +732,7 @@
 
             saveIngredientSettings() {
                 document.getElementById('ingredientSettingsSection').classList.remove('show');
-                alert('Ingredient settings saved successfully!');
+                alert('Zutaten-Einstellungen erfolgreich gespeichert!');
             }
 
             generateIngredientPrompt() {
@@ -740,19 +740,19 @@
                     `${index + 1}. ${ingredient.name} (${ingredient.details})`
                 ).join('\n');
 
-                return `Analyze this ingredient list image for the following problematic ingredients:
+                return `Analysiere diese Zutatenliste für die folgenden problematischen Zutaten:
 
 ${ingredientList}
 
-Please respond in this exact JSON format:
+Bitte antworte in diesem exakten JSON-Format:
 {
-  "status": "ok" or "warning",
-  "message": "brief summary message",
-  "problematic_ingredients": ["list of problematic ingredients found, empty array if none"],
-  "details": "detailed explanation of findings"
+  "status": "ok" oder "warning",
+  "message": "kurze Zusammenfassung",
+  "problematic_ingredients": ["Liste der gefundenen problematischen Zutaten, leeres Array falls keine"],
+  "details": "detaillierte Erklärung der Befunde"
 }
 
-If none of these problematic ingredients are found, set status to "ok". If any are found, set status to "warning" and list them.`;
+Falls keine dieser problematischen Zutaten gefunden werden, setze status auf "ok". Falls welche gefunden werden, setze status auf "warning" und liste sie auf.`;
             }
         }
 
