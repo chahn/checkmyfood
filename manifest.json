@@ -3,10 +3,14 @@
   "short_name": "ZutatenCheck",
   "description": "Prüfe Lebensmittel-Zutaten auf Farbstoffe und Konservierungsstoffe mit KI",
   "start_url": "/checkmyfood/",
-  "display": "standalone",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone", "minimal-ui"],
   "background_color": "#667eea",
   "theme_color": "#4CAF50",
   "orientation": "portrait",
+  "prefer_related_applications": false,
+  "scope": "/checkmyfood/",
+  "categories": ["food", "health", "utilities"],
   "icons": [
     {
       "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9IiM0Q0FGNTAJLZ4+Cjx0ZXh0IHg9Ijk2IiB5PSIxMTAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI4MCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfkI08L3RleHQ+Cjwvc3ZnPgo=",
