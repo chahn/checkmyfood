@@ -1,8 +1,8 @@
 const CACHE_NAME = 'ingredient-analyzer-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json'
+  '/checkmyfood/',
+  '/checkmyfood/index.html',
+  '/checkmyfood/manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
