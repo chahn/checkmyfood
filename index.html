@@ -765,7 +765,7 @@ Falls keine dieser problematischen Zutaten gefunden werden, setze status auf "ok
         // Register service worker for PWA functionality (optional)
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').catch(() => {
+                navigator.serviceWorker.register('/checkmyfood/sw.js').catch(() => {
                     // Service worker registration failed, but that's okay
                 });
             });
