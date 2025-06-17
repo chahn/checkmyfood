@@ -1,8 +1,8 @@
 {
-  "name": "Ingredient Analyzer",
-  "short_name": "IngredientCheck",
-  "description": "Check food ingredients for colorants and preservatives using AI",
-  "start_url": "/",
+  "name": "Zutaten-Analysator",
+  "short_name": "ZutatenCheck",
+  "description": "Prüfe Lebensmittel-Zutaten auf Farbstoffe und Konservierungsstoffe mit KI",
+  "start_url": "/checkmyfood/",
   "display": "standalone",
   "background_color": "#667eea",
   "theme_color": "#4CAF50",
