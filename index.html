@@ -13,48 +13,51 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #e8e4ff 0%, #ede8ff 100%);
             min-height: 100vh;
             padding: 20px;
-            color: #333;
+            color: #334155;
         }
 
         .container {
             max-width: 600px;
             margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             overflow: hidden;
+            border: 1px solid #e2e8f0;
         }
 
         .header {
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            background: #2d3748;
             color: white;
-            padding: 30px 20px;
+            padding: 32px 24px;
             text-align: center;
         }
 
         .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
+            font-size: 2rem;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
         .header p {
             opacity: 0.9;
-            font-size: 16px;
+            font-size: 1rem;
+            color: #cbd5e0;
         }
 
         .content {
-            padding: 30px 20px;
+            padding: 32px 24px;
         }
 
         .api-key-section {
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             padding: 20px;
-            border: 1px solid #eee;
-            border-radius: 10px;
-            background-color: #f9f9f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background-color: #f8fafc;
             display: none;
         }
 
@@ -70,34 +73,42 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #555;
+            color: #1e293b;
         }
 
         .input-group input {
             width: 100%;
             padding: 12px 16px;
-            border: 2px solid #e1e1e1;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: border-color 0.3s;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            color: #334155;
         }
 
         .input-group input:focus {
             outline: none;
-            border-color: #4CAF50;
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .input-group input::placeholder {
+            color: #94a3b8;
         }
 
         .camera-section {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
         }
 
         .camera-container {
             position: relative;
             margin-bottom: 20px;
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
-            background: #f5f5f5;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
         }
 
         #video {
@@ -113,72 +124,75 @@
         .captured-image {
             width: 100%;
             max-width: 100%;
-            border-radius: 15px;
+            border-radius: 12px;
             display: none;
         }
 
         .button {
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            background: #0ea5e9;
             color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin: 10px;
+            transition: all 0.2s ease;
+            margin: 8px;
             min-width: 120px;
+            font-family: inherit;
         }
 
         .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+            background: #0284c7;
+            transform: translateY(-1px);
         }
 
         .button:disabled {
-            background: #ccc;
+            background: #94a3b8;
             cursor: not-allowed;
             transform: none;
-            box-shadow: none;
         }
 
         .button.secondary {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            background: #ef4444;
+            color: white;
         }
 
         .button.secondary:hover {
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+            background: #dc2626;
         }
 
         .results {
-            margin-top: 30px;
+            margin-top: 24px;
             padding: 20px;
-            border-radius: 15px;
+            border-radius: 12px;
             display: none;
+            border: 1px solid #e2e8f0;
         }
 
         .results.success {
-            background: #d4edda;
-            border: 2px solid #c3e6cb;
-            color: #155724;
+            background: #dcfce7;
+            border-color: #bbf7d0;
+            color: #14532d;
         }
 
         .results.warning {
-            background: #fff3cd;
-            border: 2px solid #ffeaa7;
-            color: #856404;
+            background: #fef3c7;
+            border-color: #fde68a;
+            color: #92400e;
         }
 
         .results.error {
-            background: #f8d7da;
-            border: 2px solid #f5c6cb;
-            color: #721c24;
+            background: #fecaca;
+            border-color: #fca5a5;
+            color: #991b1b;
         }
 
         .results h3 {
-            margin-bottom: 15px;
-            font-size: 20px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+            font-weight: 600;
         }
 
         .ingredient-list {
@@ -198,7 +212,7 @@
         .loading {
             display: none;
             text-align: center;
-            padding: 20px;
+            padding: 24px;
         }
 
         .loading.show {
@@ -206,13 +220,13 @@
         }
 
         .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #4CAF50;
+            width: 36px;
+            height: 36px;
+            border: 3px solid #f1f5f9;
+            border-top: 3px solid #0ea5e9;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
+            margin: 0 auto 16px;
         }
 
         @keyframes spin {
@@ -221,12 +235,12 @@
         }
 
         .setup-button {
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-            margin-bottom: 20px;
+            background: #0ea5e9;
+            margin-bottom: 12px;
         }
 
         .setup-button:hover {
-            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+            background: #0284c7;
         }
 
         @media (max-width: 480px) {
@@ -237,30 +251,30 @@
             }
 
             .header {
-                padding: 20px 15px;
+                padding: 24px 20px;
             }
 
             .header h1 {
-                font-size: 24px;
+                font-size: 1.75rem;
             }
 
             .content {
-                padding: 20px 15px;
+                padding: 24px 20px;
             }
 
             .button {
                 width: 100%;
-                margin: 5px 0;
+                margin: 6px 0;
             }
         }
 
         .settings-section,
         .api-key-section {
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             padding: 20px;
-            border: 1px solid #eee;
-            border-radius: 10px;
-            background-color: #f9f9f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background-color: #f8fafc;
             display: none;
         }
 
@@ -271,28 +285,37 @@
 
         .settings-section h3 {
             margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 18px;
-            color: #333;
+            margin-bottom: 16px;
+            font-size: 1.125rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .settings-section h4 {
+            margin-bottom: 12px;
+            font-size: 1rem;
+            color: #1e293b;
+            font-weight: 600;
         }
 
         .current-ingredients-list {
             list-style: none;
             padding: 0;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             max-height: 200px;
             overflow-y: auto;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            background: #ffffff;
         }
 
         .current-ingredients-list li {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 5px;
-            border-bottom: 1px solid #eee;
+            padding: 12px 8px;
+            border-bottom: 1px solid #f1f5f9;
         }
 
         .current-ingredients-list li:last-child {
@@ -301,47 +324,62 @@
 
         .current-ingredients-list .ingredient-text {
             flex-grow: 1;
-            margin-right: 10px;
-            font-size: 14px;
+            margin-right: 12px;
+            font-size: 0.95rem;
+        }
+
+        .current-ingredients-list .ingredient-text strong {
+            color: #1e293b;
+            font-weight: 600;
         }
 
         .current-ingredients-list .ingredient-details {
-            font-size: 12px;
-            color: #555;
+            font-size: 0.85rem;
+            color: #64748b;
             display: block;
+            margin-top: 4px;
         }
 
         .current-ingredients-list .remove-ingredient-btn {
-            background: #ff6b6b;
+            background: #ef4444;
             color: white;
             border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 12px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
             cursor: pointer;
             flex-shrink: 0;
+            font-weight: 500;
+            transition: all 0.2s ease;
         }
 
         .current-ingredients-list .remove-ingredient-btn:hover {
-            background: #ee5a24;
+            background: #dc2626;
+            transform: translateY(-1px);
         }
+
+
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🔍 Zutaten-Analysator</h1>
-            <p>Prüfe Farbstoffe, Konservierungsstoffe, Rauch und Karamell in deinen Lebensmitteln</p>
+            <h1>🔍 Zutaten-Analyse</h1>
+            <p>Prüfe Lebensmittel auf unverträgliche Zutaten • Cloud-basiert mit LivingApps</p>
         </div>
 
         <div class="content">
             <button id="setupBtn" class="button setup-button">⚙️ API-Schlüssel einrichten</button>
-            <button id="customizeIngredientsBtn" class="button setup-button" style="background: linear-gradient(135deg, #54a0ff 0%, #2e86de 100%);">🔧 Zutaten anpassen</button>
+            <button id="customizeIngredientsBtn" class="button setup-button">🔧 Zutaten anpassen</button>
 
             <div id="apiKeySection" class="api-key-section">
                 <div class="input-group">
                     <label for="apiKey">OpenAI API-Schlüssel:</label>
                     <input type="password" id="apiKey" placeholder="sk-..." />
+                </div>
+                <div class="input-group">
+                    <label for="livingAppsApiKey">LivingApps API-Schlüssel:</label>
+                    <input type="password" id="livingAppsApiKey" placeholder="Demo: 6877a8cfn..." />
                 </div>
                 <button id="saveApiKey" class="button">💾 Speichern & Fortfahren</button>
             </div>
@@ -358,7 +396,7 @@
                 </div>
                 <button id="addIngredientBtn" class="button" style="margin-bottom: 20px;">➕ Zutat hinzufügen</button>
 
-                <h4>Aktuelle Liste:</h4>
+                <h4>Aktuelle Liste: <span id="ingredientsLoadingIndicator" style="display: none; color: #64748b; font-size: 0.8rem; font-weight: normal;">🔄 Lade...</span></h4>
                 <ul id="currentIngredientsList" class="current-ingredients-list">
                     <!-- Zutaten werden hier von JavaScript eingefügt -->
                 </ul>
@@ -399,14 +437,17 @@
                 this.canvas = document.getElementById('canvas');
                 this.capturedImage = document.getElementById('capturedImage');
                 this.apiKey = localStorage.getItem('openai_api_key') || '';
+                this.livingAppsApiKey = localStorage.getItem('livingapps_api_key') || '';
+                this.livingAppsBaseUrl = 'https://my.living-apps.de/rest';
+                this.ingredientsAppId = '6877b14318925c43e8886097';
                 this.stream = null;
 
-                // Initialize custom ingredients with defaults
-                this.customIngredients = this.loadCustomIngredients();
+                // Initialize custom ingredients from LivingApp
+                this.customIngredients = [];
 
                 this.initializeEventListeners();
                 this.checkApiKey();
-                this.loadIngredientsList();
+                this.loadCustomIngredients();
             }
 
             initializeEventListeners() {
@@ -432,7 +473,7 @@
             }
 
             checkApiKey() {
-                if (this.apiKey) {
+                if (this.apiKey && this.livingAppsApiKey) {
                     document.getElementById('mainApp').style.display = 'block';
                     document.getElementById('setupBtn').textContent = '⚙️ API-Schlüssel ändern';
                 }
@@ -444,25 +485,38 @@
                 if (this.apiKey) {
                     document.getElementById('apiKey').value = this.apiKey;
                 }
+                if (this.livingAppsApiKey) {
+                    document.getElementById('livingAppsApiKey').value = this.livingAppsApiKey;
+                }
             }
 
             saveApiKey() {
                 const apiKeyInput = document.getElementById('apiKey');
+                const livingAppsApiKeyInput = document.getElementById('livingAppsApiKey');
                 const apiKey = apiKeyInput.value.trim();
+                const livingAppsApiKey = livingAppsApiKeyInput.value.trim();
 
                 if (!apiKey.startsWith('sk-')) {
                     alert('Bitte geben Sie einen gültigen OpenAI API-Schlüssel ein (beginnt mit sk-)');
                     return;
                 }
 
+                if (!livingAppsApiKey) {
+                    alert('Bitte geben Sie einen gültigen LivingApps API-Schlüssel ein');
+                    return;
+                }
+
                 this.apiKey = apiKey;
+                this.livingAppsApiKey = livingAppsApiKey;
                 localStorage.setItem('openai_api_key', apiKey);
+                localStorage.setItem('livingapps_api_key', livingAppsApiKey);
 
                 document.getElementById('apiKeySection').classList.remove('show');
                 document.getElementById('mainApp').style.display = 'block';
                 document.getElementById('setupBtn').textContent = '⚙️ API-Schlüssel ändern';
 
-                alert('API-Schlüssel erfolgreich gespeichert!');
+                // Load ingredients after API keys are set
+                this.loadCustomIngredients();
             }
 
             async startCamera() {
@@ -521,8 +575,8 @@
             }
 
             async analyzeIngredients() {
-                if (!this.apiKey) {
-                    alert('Bitte richten Sie zuerst Ihren OpenAI API-Schlüssel ein.');
+                if (!this.apiKey || !this.livingAppsApiKey) {
+                    alert('Bitte richten Sie zuerst Ihre API-Schlüssel ein.');
                     return;
                 }
 
@@ -648,26 +702,83 @@
             }
 
             // Ingredient customization methods
-                        loadCustomIngredients() {
-                const defaultIngredients = [
-                    { name: "Farbstoffe", details: "künstliche Farben wie E102, E110, E124, E129, usw." },
-                    { name: "Konservierungsstoffe", details: "wie E200-E299, BHA, BHT, usw." },
-                    { name: "Rauch oder Raucharoma", details: "Rauch, Raucharoma, Rauchgeschmack, usw." },
-                    { name: "Karamell oder ähnliches", details: "Karamell, Karamellfarbe, Karamellgeschmack, usw." }
-                ];
+            async loadCustomIngredients() {
+                const loadingIndicator = document.getElementById('ingredientsLoadingIndicator');
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'inline';
+                }
 
-                const saved = localStorage.getItem('custom_ingredients');
-                return saved ? JSON.parse(saved) : defaultIngredients;
-            }
+                if (!this.livingAppsApiKey) {
+                    console.warn('LivingApps API key not set, using default ingredients');
+                    this.customIngredients = [
+                        { name: "Farbstoffe", details: "künstliche Farben wie E102, E110, E124, E129, usw." },
+                        { name: "Konservierungsstoffe", details: "wie E200-E299, BHA, BHT, usw." },
+                        { name: "Rauch oder Raucharoma", details: "Rauch, Raucharoma, Rauchgeschmack, usw." },
+                        { name: "Karamell oder ähnliches", details: "Karamell, Karamellfarbe, Karamellgeschmack, usw." }
+                    ];
+                    this.loadIngredientsList();
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
+                    }
+                    return;
+                }
 
-            saveCustomIngredients() {
-                localStorage.setItem('custom_ingredients', JSON.stringify(this.customIngredients));
+                try {
+                    const response = await fetch(`${this.livingAppsBaseUrl}/apps/${this.ingredientsAppId}/records?filter=r.v_is_active == True&orderby=r.v_name`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `LA-Login-Token ${this.livingAppsApiKey}`,
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    this.customIngredients = [];
+
+                    // Convert LivingApp records to local format
+                    Object.values(data).forEach(record => {
+                        if (record.fields) {
+                            this.customIngredients.push({
+                                id: record.id,
+                                name: record.fields.name || '',
+                                details: record.fields.details || '',
+                                category: record.fields.category || '',
+                                severity: record.fields.severity || ''
+                            });
+                        }
+                    });
+
+                                        console.log(`Loaded ${this.customIngredients.length} ingredients from LivingApp`);
+                    this.loadIngredientsList();
+
+                } catch (error) {
+                    console.error('Error loading ingredients from LivingApp:', error);
+                    alert('Fehler beim Laden der Zutaten. Bitte überprüfen Sie Ihren LivingApps API-Schlüssel.');
+
+                    // Fall back to default ingredients
+                    this.customIngredients = [
+                        { name: "Farbstoffe", details: "künstliche Farben wie E102, E110, E124, E129, usw." },
+                        { name: "Konservierungsstoffe", details: "wie E200-E299, BHA, BHT, usw." },
+                        { name: "Rauch oder Raucharoma", details: "Rauch, Raucharoma, Rauchgeschmack, usw." },
+                        { name: "Karamell oder ähnliches", details: "Karamell, Karamellfarbe, Karamellgeschmack, usw." }
+                    ];
+                    this.loadIngredientsList();
+                } finally {
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
+                    }
+                }
             }
 
             showIngredientSettings() {
                 const section = document.getElementById('ingredientSettingsSection');
                 section.classList.toggle('show');
-                this.loadIngredientsList();
+                // Refresh the list from the API
+                this.loadCustomIngredients();
             }
 
             loadIngredientsList() {
@@ -676,26 +787,40 @@
 
                 this.customIngredients.forEach((ingredient, index) => {
                     const li = document.createElement('li');
+                    const categoryBadge = ingredient.category ? `<span style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; margin-left: 8px;">${ingredient.category}</span>` : '';
+                    const severityBadge = ingredient.severity ? `<span style="background: ${ingredient.severity === 'hoch' ? '#fecaca' : ingredient.severity === 'mittel' ? '#fed7aa' : '#dcfce7'}; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; margin-left: 4px;">${ingredient.severity}</span>` : '';
+
                     li.innerHTML = `
                         <div class="ingredient-text">
-                            <strong>${ingredient.name}</strong>
+                            <strong>${ingredient.name}</strong>${categoryBadge}${severityBadge}
                             ${ingredient.details ? `<div class="ingredient-details">${ingredient.details}</div>` : ''}
                         </div>
                         <button class="remove-ingredient-btn" onclick="ingredientAnalyzer.removeCustomIngredient(${index})">🗑️ Entfernen</button>
                     `;
                     list.appendChild(li);
                 });
+
+                if (this.customIngredients.length === 0) {
+                    const li = document.createElement('li');
+                    li.innerHTML = '<div style="text-align: center; color: #64748b; font-style: italic;">Keine Zutaten gefunden. Fügen Sie neue Zutaten hinzu oder überprüfen Sie Ihren API-Schlüssel.</div>';
+                    list.appendChild(li);
+                }
             }
 
-            addCustomIngredient() {
+            async addCustomIngredient() {
                 const nameInput = document.getElementById('newIngredientName');
                 const detailsInput = document.getElementById('newIngredientDetails');
 
                 const name = nameInput.value.trim();
                 const details = detailsInput.value.trim();
 
-                                if (!name) {
+                if (!name) {
                     alert('Bitte geben Sie einen Zutatennamen ein.');
+                    return;
+                }
+
+                if (!this.livingAppsApiKey) {
+                    alert('LivingApps API-Schlüssel ist nicht konfiguriert.');
                     return;
                 }
 
@@ -709,30 +834,94 @@
                     return;
                 }
 
-                this.customIngredients.push({ name, details });
-                this.saveCustomIngredients();
-                this.loadIngredientsList();
+                try {
+                    // Create new record in LivingApp
+                    const recordData = {
+                        fields: {
+                            name: name,
+                            details: details || '',
+                            category: 'sonstige',
+                            severity: 'mittel',
+                            is_active: true,
+                            date_added: new Date().toISOString().split('T')[0],
+                            notes: 'Benutzer-definierte Zutat'
+                        }
+                    };
 
-                // Clear inputs
-                nameInput.value = '';
-                detailsInput.value = '';
-                nameInput.focus();
+                    const response = await fetch(`${this.livingAppsBaseUrl}/apps/${this.ingredientsAppId}/records`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `LA-Login-Token ${this.livingAppsApiKey}`,
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(recordData)
+                    });
 
-                alert(`"${name}" wurde zu Ihrer Zutatenliste hinzugefügt.`);
-            }
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
 
-            removeCustomIngredient(index) {
-                const ingredient = this.customIngredients[index];
-                if (confirm(`"${ingredient.name}" aus Ihrer Liste entfernen?`)) {
-                    this.customIngredients.splice(index, 1);
-                    this.saveCustomIngredients();
-                    this.loadIngredientsList();
+                    const result = await response.json();
+                    console.log('Created ingredient:', result);
+
+                    // Clear inputs
+                    nameInput.value = '';
+                    detailsInput.value = '';
+                    nameInput.focus();
+
+                    // Reload ingredients list
+                    await this.loadCustomIngredients();
+
+                } catch (error) {
+                    console.error('Error creating ingredient:', error);
+                    alert('Fehler beim Hinzufügen der Zutat. Bitte versuchen Sie es erneut.');
                 }
             }
 
-            saveIngredientSettings() {
+            async removeCustomIngredient(index) {
+                const ingredient = this.customIngredients[index];
+                if (!confirm(`"${ingredient.name}" aus Ihrer Liste entfernen?`)) {
+                    return;
+                }
+
+                if (!this.livingAppsApiKey) {
+                    alert('LivingApps API-Schlüssel ist nicht konfiguriert.');
+                    return;
+                }
+
+                if (!ingredient.id) {
+                    alert('Ingredient ID nicht gefunden. Kann nicht gelöscht werden.');
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`${this.livingAppsBaseUrl}/apps/${this.ingredientsAppId}/records/${ingredient.id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `LA-Login-Token ${this.livingAppsApiKey}`
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    console.log('Deleted ingredient:', ingredient.name);
+
+                    // Reload ingredients list
+                    await this.loadCustomIngredients();
+
+                } catch (error) {
+                    console.error('Error deleting ingredient:', error);
+                    alert('Fehler beim Löschen der Zutat. Bitte versuchen Sie es erneut.');
+                }
+            }
+
+            async saveIngredientSettings() {
                 document.getElementById('ingredientSettingsSection').classList.remove('show');
-                alert('Zutaten-Einstellungen erfolgreich gespeichert!');
+                // Refresh ingredients to ensure we have the latest data
+                await this.loadCustomIngredients();
             }
 
             generateIngredientPrompt() {
