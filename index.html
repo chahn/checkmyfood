@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zutaten-Analysator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -13,7 +14,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #e8e4ff 0%, #ede8ff 100%);
+            background: linear-gradient(135deg, #dbcbff 0%, #bbc5fc 100%);
             min-height: 100vh;
             padding: 20px;
             color: #334155;
@@ -46,6 +47,22 @@
             opacity: 0.9;
             font-size: 1rem;
             color: #cbd5e0;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 24px;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        /* Icon spacing */
+        .button i,
+        h1 i,
+        h3 i {
+            margin-right: 8px;
         }
 
         .content {
@@ -364,24 +381,24 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🔍 Zutaten-Analyse</h1>
-            <p>Prüfe Lebensmittel auf unverträgliche Zutaten • Cloud-basiert mit LivingApps</p>
+            <h1><i class="fas fa-search"></i> Zutaten-Analyse</h1>
+            <p>Prüfe Lebensmittel auf unverträgliche Zutaten</p>
         </div>
 
         <div class="content">
-            <button id="setupBtn" class="button setup-button">⚙️ API-Schlüssel einrichten</button>
-            <button id="customizeIngredientsBtn" class="button setup-button">🔧 Zutaten anpassen</button>
+            <button id="setupBtn" class="button setup-button"><i class="fas fa-cog"></i> API-Keys einrichten</button>
+            <button id="customizeIngredientsBtn" class="button setup-button"><i class="fas fa-wrench"></i> Zutaten anpassen</button>
 
             <div id="apiKeySection" class="api-key-section">
                 <div class="input-group">
-                    <label for="apiKey">OpenAI API-Schlüssel:</label>
+                    <label for="apiKey">OpenAI API-Key:</label>
                     <input type="password" id="apiKey" placeholder="sk-..." />
                 </div>
                 <div class="input-group">
-                    <label for="livingAppsApiKey">LivingApps API-Schlüssel:</label>
-                    <input type="password" id="livingAppsApiKey" placeholder="Demo: 6877a8cfn..." />
+                    <label for="livingAppsApiKey">LivingApps API-Key:</label>
+                    <input type="password" id="livingAppsApiKey" placeholder="6877a8cfn..." />
                 </div>
-                <button id="saveApiKey" class="button">💾 Speichern & Fortfahren</button>
+                <button id="saveApiKey" class="button"><i class="fas fa-save"></i> Speichern & Fortfahren</button>
             </div>
 
             <div id="ingredientSettingsSection" class="settings-section">
@@ -394,13 +411,13 @@
                     <label for="newIngredientDetails">Details/Beispiele (z.B. künstlicher Süßstoff E951):</label>
                     <input type="text" id="newIngredientDetails" placeholder="Optional: Beispiele, E-Nummern" />
                 </div>
-                <button id="addIngredientBtn" class="button" style="margin-bottom: 20px;">➕ Zutat hinzufügen</button>
+                <button id="addIngredientBtn" class="button" style="margin-bottom: 20px;"><i class="fas fa-plus"></i> Zutat hinzufügen</button>
 
-                <h4>Aktuelle Liste: <span id="ingredientsLoadingIndicator" style="display: none; color: #64748b; font-size: 0.8rem; font-weight: normal;">🔄 Lade...</span></h4>
+                <h4>Aktuelle Liste: <span id="ingredientsLoadingIndicator" style="display: none; color: #64748b; font-size: 0.8rem; font-weight: normal;"><i class="fas fa-sync-alt fa-spin"></i> Lade...</span></h4>
                 <ul id="currentIngredientsList" class="current-ingredients-list">
                     <!-- Zutaten werden hier von JavaScript eingefügt -->
                 </ul>
-                <button id="saveIngredientSettingsBtn" class="button">💾 Speichern & Schließen</button>
+                <button id="saveIngredientSettingsBtn" class="button"><i class="fas fa-save"></i> Speichern & Schließen</button>
             </div>
 
             <div id="mainApp" style="display: none;">
@@ -411,10 +428,10 @@
                         <img id="capturedImage" class="captured-image" alt="Aufgenommene Zutatenliste" />
                     </div>
 
-                    <button id="startCamera" class="button">📷 Kamera starten</button>
-                    <button id="captureBtn" class="button" style="display: none;">📸 Foto aufnehmen</button>
-                    <button id="retakeBtn" class="button secondary" style="display: none;">🔄 Wiederholen</button>
-                    <button id="analyzeBtn" class="button" style="display: none;">🔍 Zutaten analysieren</button>
+                    <button id="startCamera" class="button"><i class="fas fa-camera"></i> Kamera starten</button>
+                    <button id="captureBtn" class="button" style="display: none;"><i class="fas fa-camera"></i> Foto aufnehmen</button>
+                    <button id="retakeBtn" class="button secondary" style="display: none;"><i class="fas fa-redo"></i> Wiederholen</button>
+                    <button id="analyzeBtn" class="button" style="display: none;"><i class="fas fa-search"></i> Zutaten analysieren</button>
                 </div>
 
                 <div id="loading" class="loading">
@@ -427,6 +444,10 @@
                     <div id="resultsContent"></div>
                 </div>
             </div>
+        </div>
+
+        <div class="footer">
+            Made with <i class="fas fa-heart" style="color: #f87171;"></i> by Lilo and LivingApps.
         </div>
     </div>
 
@@ -475,7 +496,7 @@
             checkApiKey() {
                 if (this.apiKey && this.livingAppsApiKey) {
                     document.getElementById('mainApp').style.display = 'block';
-                    document.getElementById('setupBtn').textContent = '⚙️ API-Schlüssel ändern';
+                    document.getElementById('setupBtn').innerHTML = '<i class="fas fa-cog"></i> API-Keys ändern';
                 }
             }
 
@@ -497,12 +518,12 @@
                 const livingAppsApiKey = livingAppsApiKeyInput.value.trim();
 
                 if (!apiKey.startsWith('sk-')) {
-                    alert('Bitte geben Sie einen gültigen OpenAI API-Schlüssel ein (beginnt mit sk-)');
+                    alert('Bitte geben Sie einen gültigen OpenAI API-Key ein (beginnt mit sk-)');
                     return;
                 }
 
                 if (!livingAppsApiKey) {
-                    alert('Bitte geben Sie einen gültigen LivingApps API-Schlüssel ein');
+                    alert('Bitte geben Sie einen gültigen LivingApps API-Key ein');
                     return;
                 }
 
@@ -513,7 +534,7 @@
 
                 document.getElementById('apiKeySection').classList.remove('show');
                 document.getElementById('mainApp').style.display = 'block';
-                document.getElementById('setupBtn').textContent = '⚙️ API-Schlüssel ändern';
+                document.getElementById('setupBtn').innerHTML = '<i class="fas fa-cog"></i> API-Key ändern';
 
                 // Load ingredients after API keys are set
                 this.loadCustomIngredients();
@@ -576,7 +597,7 @@
 
             async analyzeIngredients() {
                 if (!this.apiKey || !this.livingAppsApiKey) {
-                    alert('Bitte richten Sie zuerst Ihre API-Schlüssel ein.');
+                    alert('Bitte richten Sie zuerst Ihre API-Keys ein.');
                     return;
                 }
 
@@ -666,11 +687,11 @@
 
                 if (analysis.status === 'ok') {
                     results.classList.add('success');
-                    title.textContent = '✅ Alles in Ordnung!';
+                    title.innerHTML = '<i class="fas fa-check-circle"></i> Alles in Ordnung!';
                     content.innerHTML = `<p><strong>${analysis.message}</strong></p><p>${analysis.details}</p>`;
                 } else {
                     results.classList.add('warning');
-                    title.textContent = '⚠️ Problematische Zutaten gefunden';
+                    title.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Problematische Zutaten gefunden';
 
                     let html = `<p><strong>${analysis.message}</strong></p>`;
 
@@ -696,8 +717,8 @@
                 const content = document.getElementById('resultsContent');
 
                 results.className = 'results error';
-                title.textContent = '❌ Analyse-Fehler';
-                content.innerHTML = `<p>Entschuldigung, es gab einen Fehler bei der Bildanalyse:</p><p><strong>${errorMessage}</strong></p><p>Bitte versuchen Sie es erneut oder überprüfen Sie Ihren API-Schlüssel.</p>`;
+                title.innerHTML = '<i class="fas fa-times-circle"></i> Analyse-Fehler';
+                content.innerHTML = `<p>Entschuldigung, es gab einen Fehler bei der Bildanalyse:</p><p><strong>${errorMessage}</strong></p><p>Bitte versuchen Sie es erneut oder überprüfen Sie Ihren API-Key.</p>`;
                 results.style.display = 'block';
             }
 
@@ -757,7 +778,7 @@
 
                 } catch (error) {
                     console.error('Error loading ingredients from LivingApp:', error);
-                    alert('Fehler beim Laden der Zutaten. Bitte überprüfen Sie Ihren LivingApps API-Schlüssel.');
+                    alert('Fehler beim Laden der Zutaten. Bitte überprüfen Sie Ihren LivingApps API-Key.');
 
                     // Fall back to default ingredients
                     this.customIngredients = [
@@ -795,14 +816,14 @@
                             <strong>${ingredient.name}</strong>${categoryBadge}${severityBadge}
                             ${ingredient.details ? `<div class="ingredient-details">${ingredient.details}</div>` : ''}
                         </div>
-                        <button class="remove-ingredient-btn" onclick="ingredientAnalyzer.removeCustomIngredient(${index})">🗑️ Entfernen</button>
+                        <button class="remove-ingredient-btn" onclick="ingredientAnalyzer.removeCustomIngredient(${index})"><i class="fas fa-trash-alt"></i> Entfernen</button>
                     `;
                     list.appendChild(li);
                 });
 
                 if (this.customIngredients.length === 0) {
                     const li = document.createElement('li');
-                    li.innerHTML = '<div style="text-align: center; color: #64748b; font-style: italic;">Keine Zutaten gefunden. Fügen Sie neue Zutaten hinzu oder überprüfen Sie Ihren API-Schlüssel.</div>';
+                    li.innerHTML = '<div style="text-align: center; color: #64748b; font-style: italic;">Keine Zutaten gefunden. Fügen Sie neue Zutaten hinzu oder überprüfen Sie Ihren API-Key.</div>';
                     list.appendChild(li);
                 }
             }
@@ -820,7 +841,7 @@
                 }
 
                 if (!this.livingAppsApiKey) {
-                    alert('LivingApps API-Schlüssel ist nicht konfiguriert.');
+                    alert('LivingApps API-Key ist nicht konfiguriert.');
                     return;
                 }
 
@@ -886,7 +907,7 @@
                 }
 
                 if (!this.livingAppsApiKey) {
-                    alert('LivingApps API-Schlüssel ist nicht konfiguriert.');
+                    alert('LivingApps API-Key ist nicht konfiguriert.');
                     return;
                 }
 
